@@ -17,22 +17,22 @@ function loaded() {
 var x = 0;
 
 var titleText = ["|",
-					"$",
-					"$ C_",
-					"$ Ch_",
-					"$ Ch1_",
-					"$ Ch1n_",
-					"$ Ch1ng_",
-					"$ Ch1ngz_",
-                    "$ Ch1ngz_",
-                    "$ Ch1ngz_",
-                    "$ Ch1ngz|",
-                    "$ Ch1ng|",
-                    "$ Ch1n|",
-                    "$ Ch1|",
-                    "$ Ch|",
-                    "$ C|",
-                    " ", ];
+		"$",
+		"$ C_",
+		"$ Ch_",
+		"$ Ch1_",
+		"$ Ch1n_",
+		"$ Ch1ng_",
+		"$ Ch1ngz_",
+                "$ Ch1ngz_",
+                "$ Ch1ngz_",
+                "$ Ch1ngz|",
+                "$ Ch1ng|",
+                "$ Ch1n|",
+                "$ Ch1|",
+                "$ Ch|",
+                "$ C|",
+                " ", ];
  
 
 
