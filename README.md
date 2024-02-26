@@ -8,6 +8,3 @@
 <p align="center">
   <img src="./images/img003.png" alt=" " width="1920">
 </p>
-<p align="center">
-  <img src="./images/img004.png" alt=" " width="1920">
-</p>
