@@ -2,84 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
-    <link rel="stylesheet" href="/css/anime_page_styles.css">
-    <title>Ch1nChun - Anime Page</title>
+    <title>Ch1nChun - Anime</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 <body>
-  <main>
-
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        <!-- First Slide    -->
-        <div class="swiper-slide swiper-slide--one">
-          <div>
-            <h2>Bleach</h2>
-            <p>One of the best shounen anime I have watched. </p>
-          </div>
-        </div>
-        <!-- Second Slide    -->
-        <div class="swiper-slide swiper-slide--two">
-          <div>
-            <h2>Jujutsu Kaisen</h2>
-            <p>
-               One of the best manga and shounen anime.
-            </p>
-          </div>
-        </div>
-        <!-- Third Slide    -->
-        <div class="swiper-slide swiper-slide--three"> 
-          <div>
-            <h2>86 Eighty Six</h2>
-            <p>
-             Top notch animation, very enjoyable. 
-            </p>
-          </div>
-        </div>
-          <!-- Fourth Slide    -->
-        <div class="swiper-slide swiper-slide--four">
-          <div>
-            <h2>Solo Leveling</h2>
-            <p>
-            Best Manhwa and Dungeon Anime
-            </p>
-          </div>
-        </div>
-        <!-- Fifth Slide    -->
-        <div class="swiper-slide swiper-slide--five">
-          <div>
-            <h2>Date A Live</h2>
-            <p>
-              Funny harem romance series go brrr. 
-            </p>
-          </div>
-        </div>
-        <!-- Sixth Slide    -->
-        <div class="swiper-slide swiper-slide--six">
-            <div>
-              <h2>Re:Zero</h2>
-              <p>
-              One of the best story isekai. 
-              </p>
+    <div class="container">
+        <div id="slide">
+            <!-- First -->
+            <div class="item" style="background-image: url(/images/anime/Bleach.jpg);">
+                <div class="content">  
+                </div>
             </div>
-          </div>
-          <!-- Seventh Slide    -->
-        <div class="swiper-slide swiper-slide--seven">
-            <div>
-              <h2>Tokyo Ghoul</h2>
-              <p>
-             No comments, just very good.
-              </p>
+             <!-- Two -->
+            <div class="item" style="background-image: url(/images/anime/JujutsuKaisen.jpg);">
+                <div class="content">
+                </div>
             </div>
-          </div>
-      </div>
-      <!-- Add Pagination -->
-      <div class="swiper-pagination"></div>
+             <!-- Third -->
+            <div class="item" style="background-image: url(/images/anime/EightySix.jpg);">
+                <div class="content">
+                </div>
+            </div>
+             <!-- Fourth -->
+            <div class="item" style="background-image: url(/images/anime/SoloLeveling.jpg);">
+                <div class="content">
+                </div>
+            </div>
+             <!-- Fifth -->
+            <div class="item" style="background-image: url(/images/anime/DateALive.jpg);">
+                <div class="content">
+                </div>
+            </div>
+             <!-- Sixth -->
+            <div class="item" style="background-image: url(/images/anime/ReZero.jpg);">
+                <div class="content">
+                </div>
+            </div>
+             <!-- Seventh -->
+           <div class="item" style="background-image: url(/images/anime/tokyoghoul.jpg);">
+                    <div class="content">                
+                    </div>
+            </div>
+          <!-- Eighth -->
+          <div class="item" style="background-image: url(/images/anime/ChainedSoldier.jpg);">
+            <div class="content">                
+            </div>
     </div>
-    
-  </main>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
-  <script src="/js/anime_page_main.js"></script>
+        </div>
+        <div class="buttons">
+            <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
+            <button id="next"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </div>
+
+    <script src="/js/anime.js"></script>
 </body>
 </html>
+  
