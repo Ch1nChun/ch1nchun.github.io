@@ -1,41 +1,48 @@
-<html lang="en">
+<!DOCTYPE html>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Anime | Work In Progress</title>
-  <link href="css/anime.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Montserrat:400,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/anime.css">
+<div class="image-slider">
+    <section class="slider__content">
+        <button type="button" class="slider-control--button prev-button">
+            <svg width="16" height="16" fill="currentColor" class="icon arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+            </svg>
+        </button>
+        <main class="image-display"></main>
+        <button type="button" class="slider-control--button next-button">
+            <svg width="16" height="16" fill="currentColor" class="icon arrow-right-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+            </svg>
+        </button>
+    </section>
+    <nav class="slider-navigation">
+        <button class="nav-button" aria-selected="true">
+            <img class="thumbnail" src="/assets/images/anime/Bleach.jpg" alt="Bleach" />
+        </button>
+        <button class="nav-button" aria-selected="false">
+            <img class="thumbnail" src="/assets/images/anime/ChainedSoldier.jpg" alt="Chained Soldier" />
+        </button>
+        <button class="nav-button" aria-selected="false">
+          <img class="thumbnail" src="/assets/images/anime/DateALive.jpg" alt="DateALive" />
+      </button>
+      <button class="nav-button" aria-selected="false">
+        <img class="thumbnail" src="/assets/images/anime/EightySix.jpg" alt="86" />
+    </button>
+    <button class="nav-button" aria-selected="false">
+      <img class="thumbnail" src="/assets/images/anime/JujutsuKaisen.jpg" alt="Jujutsu Kaisen" />
+  </button>
+  <button class="nav-button" aria-selected="false">
+    <img class="thumbnail" src="/assets/images/anime/ReZero.jpg" alt="Re0" />
+</button>
+<button class="nav-button" aria-selected="false">
+  <img class="thumbnail" src="/assets/images/anime/SoloLeveling.jpg" alt="SL" />
+</button>
+<button class="nav-button" aria-selected="false">
+  <img class="thumbnail" src="/assets/images/anime/tokyoghoul.jpg" alt="TG" />
+</button>
 
-</head>
-<body>
+        </button>
+    </nav>
+</div>
 
-  <main>
-    <div class="slider-wrapper">
-      <div class="slider-container smooth">
-        <img src="assets/images/anime/Bleach.jpg">
-        <img src="assets/images/anime/ChainedSoldier.jpg">
-        <img src="assets/images/anime/DateALive.jpg">
-        <img src="assets/images/anime/EightySix.jpg">
-        <img src="assets/images/anime/JujutsuKaisen.jpg">
-        <img src="assets/images/anime/ReZero.jpg">
-        <img src="assets/images/anime/SoloLeveling.jpg">
-        <img src="assets/images/anime/tokyoghoul.jpg">
-
-      </div>
-    </div>
-
-  <footer class="main-footer">
-    <div class="section-footer">
-      <ul>
-        <li><span class="control prev">&larr;</span></li>
-        <li><span class="control next">&rarr;</span></li>
-      </ul>
-    </div>
-  </footer>
-
-</body>
 <script src="/js/anime.js"></script>
-</html>
