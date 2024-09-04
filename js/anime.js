@@ -1,108 +1,99 @@
-const _C = document.querySelector(".slider-container");
-const N = _C.children.length;
-_C.style.setProperty("--n", N);
+class Slider {
+  constructor(slider) {
+      this.slider = slider;
+      this.display = slider.querySelector(".image-display");
+      this.navButtons = Array.from(slider.querySelectorAll(".nav-button"));
+      this.prevButton = slider.querySelector(".prev-button");
+      this.nextButton = slider.querySelector(".next-button");
+      this.sliderNavigation = slider.querySelector(".slider-navigation");
+      this.currentSlideIndex = 0;
+      this.preloadedImages = {};
 
-let x0 = null;
-let locked = false;
-let i = 0; 
-let w; 
-let interval; 
+      this.initialize();
+  }
 
-function lock(e) {
-  x0 = unify(e).clientX;
-  _C.classList.toggle("smooth", !(locked = true));
-  _C.classList.toggle("color", (locked = true));
-}
+  initialize() {
+      this.setupSlider();
+      this.preloadImages();
+      this.eventListeners();
+  }
 
-function size() {
-  w = window.innerWidth;
-}
+  setupSlider() {
+      this.showSlide(this.currentSlideIndex);
+  }
 
-function move(e) {
-  if (locked) {
-    let dx = unify(e).clientX - x0;
-    let s = Math.sign(dx);
-    let f = +((s * dx) / w).toFixed(2);
+  showSlide(index) {
+      this.currentSlideIndex = index;
+      const navButtonImg = this.navButtons[
+          this.currentSlideIndex
+      ].querySelector("img");
+      if (navButtonImg) {
+          const imgClone = navButtonImg.cloneNode();
+          this.display.replaceChildren(imgClone);
+      }
+      this.updateNavButtons();
+  }
 
-    if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > 0.2) {
-      _C.style.setProperty("--i", (i -= s));
-      f = 1 - f;
-    }
+  updateNavButtons() {
+      this.navButtons.forEach((button, buttonIndex) => {
+          const isSelected = buttonIndex === this.currentSlideIndex;
+          button.setAttribute("aria-selected", isSelected);
+          if (isSelected) button.focus();
+      });
+  }
 
-    _C.style.setProperty("--tx", "0px");
-    _C.style.setProperty("--f", f);
-    _C.classList.toggle("smooth", !(locked = false));
-    _C.classList.toggle("color", (locked = false));
-    x0 = null;
+  preloadImages() {
+      this.navButtons.forEach((button) => {
+          const imgElement = button.querySelector("img");
+          if (imgElement) {
+              const imgSrc = imgElement.src;
+              if (!this.preloadedImages[imgSrc]) {
+                  this.preloadedImages[imgSrc] = new Image();
+                  this.preloadedImages[imgSrc].src = imgSrc;
+              }
+          }
+      });
+  }
+
+  eventListeners() {
+      document.addEventListener("keydown", (event) => {
+          this.handleAction(event.key);
+      });
+
+      this.sliderNavigation.addEventListener("click", (event) => {
+          const targetButton = event.target.closest(".nav-button");
+          const index = targetButton
+              ? this.navButtons.indexOf(targetButton)
+              : -1;
+          if (index !== -1) {
+              this.showSlide(index);
+          }
+      });
+
+      this.prevButton.addEventListener("click", () =>
+          this.handleAction("prev")
+      );
+      this.nextButton.addEventListener("click", () =>
+          this.handleAction("next")
+      );
+  }
+
+  handleAction(action) {
+      if (action === "Home") {
+          this.currentSlideIndex = 0;
+      } else if (action === "End") {
+          this.currentSlideIndex = this.navButtons.length - 1;
+      } else if (action === "ArrowRight" || action === "next") {
+          this.currentSlideIndex =
+              (this.currentSlideIndex + 1) % this.navButtons.length;
+      } else if (action === "ArrowLeft" || action === "prev") {
+          this.currentSlideIndex =
+              (this.currentSlideIndex - 1 + this.navButtons.length) %
+              this.navButtons.length;
+      }
+
+      this.showSlide(this.currentSlideIndex);
   }
 }
 
-size();
-addEventListener("resize", size, false);
-
-function drag(e) {
-  e.preventDefault();
-  if (locked) {
-    _C.style.setProperty("--tx", `${Math.round(unify(e).clientX - x0)}px`);
-  }
-}
-
-function switchSlide() {
-  if (i + 1 < N) {
-    _C.style.setProperty("--i", ++i);
-  } else {
-    i = 0;
-    _C.style.setProperty("--i", i);
-  }
-}
-
-function startAutoSlide() {
-  interval = setInterval(switchSlide, 3000); // Change slide every 3 seconds
-}
-
-function stopAutoSlide() {
-  clearInterval(interval);
-}
-
-let prev = document.querySelector(".prev");
-let next = document.querySelector(".next");
-
-prev.addEventListener("click", () => {
-  if (i > 0) {
-    _C.style.setProperty("--i", --i);
-  }
-  if (i == 0) {
-    setTimeout(() => prev.classList.add("flash"), 100);
-    prev.classList.remove("flash");
-  }
-  stopAutoSlide(); 
-});
-
-next.addEventListener("click", () => {
-  if (i + 1 < N) {
-    _C.style.setProperty("--i", ++i);
-  }
-  if (i + 1 == N) {
-    setTimeout(() => next.classList.add("flash"), 500);
-    next.classList.remove("flash");
-  }
-  stopAutoSlide();
-});
-
-_C.addEventListener("mousemove", drag, false);
-_C.addEventListener("touchmove", drag, false);
-_C.addEventListener("mousedown", lock, false);
-_C.addEventListener("touchstart", lock, false);
-_C.addEventListener("mouseleave", move, false);
-_C.addEventListener("mouseup", move, false);
-_C.addEventListener("touchend", move, false);
-
-
-_C.addEventListener("touchmove", (e) => e.preventDefault(), false);
-
-
-function unify(e) {
-  return e.changedTouches ? e.changedTouches[0] : e;
-}
-
-startAutoSlide();
+const ImageSlider = new Slider(document.querySelector(".image-slider"));
