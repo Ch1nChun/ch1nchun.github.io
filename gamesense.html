@@ -6,16 +6,17 @@
     <title>gamesense — Legendary CS:GO Cheat</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-      :root {
-        --bg-color: #11151D;
+    :root {
+        --bg-color: #11151d;
         --text-color: #ffffff;
         --text-color-secondary: #a0a0a0;
         --primary-green: #91C750;
         --border-color: #222;
         --popup-color: #1A1F29;
-        /* Color for the tooltip */
+        --card-bg: #161B25;
+        --card-bg-active: #1c222d;
       }
 
       body {
@@ -27,19 +28,19 @@
       }
 
       .nav-container,
-      .hero-container {
+      .hero-container,
+      .review__container,
+      .buy-subscription__section {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 2rem;
       }
 
-      /* Navbar */
       .navbar {
         background-color: var(--bg-color);
         padding: 1.5rem 0;
         border-bottom: 1px solid rgba(49, 52, 57, .28);
         margin: auto;
-        max-width: 1200px;
       }
 
       .navbar .nav-container {
@@ -131,7 +132,6 @@
         border-color: #91C750;
       }
 
-      /* Hero */
       .hero-section {
         padding: 6rem 0;
       }
@@ -236,7 +236,6 @@
         box-shadow: 0 5px 20px rgba(145, 199, 80, 0.25);
       }
 
-      /* Hero Image */
       .hero-image-placeholder {
         flex: 1;
         display: flex;
@@ -264,7 +263,6 @@
         z-index: 1;
       }
 
-      /* Icon Row Under Image */
       .icon-row {
         margin-top: 2rem;
         display: flex;
@@ -272,9 +270,9 @@
         gap: 1.5rem;
         border-top: 1px solid rgba(49, 52, 57, .28);
         padding-top: 28px;
+        z-index: 2;
       }
 
-      /* --- Icon Item Wrapper --- */
       .icon-item {
         position: relative;
         display: flex;
@@ -295,7 +293,6 @@
         transform: scale(1.1);
       }
 
-      /* --- Tooltip Popup --- */
       .icon-tooltip {
         position: absolute;
         bottom: 100%;
@@ -318,7 +315,6 @@
         z-index: 100;
       }
 
-      /* --- Tooltip Arrow --- */
       .icon-tooltip::after {
         content: '';
         position: absolute;
@@ -330,44 +326,444 @@
         border-color: var(--popup-color) transparent transparent transparent;
       }
 
-      /* --- Show Tooltip on Hover --- */
       .icon-item:hover .icon-tooltip {
         opacity: 1;
         visibility: visible;
         transform: translateX(-50%) translateY(0);
       }
 
-      /* Responsive */
-      @media (max-width: 900px) {
-        .hero-container {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .hero-text {
-          max-width: 100%;
-          align-items: center;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .badge {
-          position: relative;
-          transform: rotate(0);
-          right: 0;
-          top: 0;
-          margin-bottom: 2rem;
-        }
-
-        .navbar .nav-container {
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .icon-tooltip {
-          display: none;
-        }
+      .review__container {
+        padding-top: 4rem;
+        padding-bottom: 6rem;
       }
+
+      .review__header p {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 3rem;
+      }
+
+      .review__header span {
+        color: var(--primary-green);
+      }
+
+      .section-divider {
+        height: 1px;
+        background-color: var(--border-color);
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+
+      .inner-divider {
+        height: 1px;
+        background-color: var(--border-color);
+        width: 95%;
+        margin: 2.0rem 0;
+      }
+
+      .review__body {
+        display: flex;
+        gap: 4rem;
+        align-items: flex-start;
+      }
+
+      .review__data {
+        flex: 1.07;
+      }
+
+      .review__data__info {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .review__data__info__data__name {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .review__data__info__data__about {
+        color: var(--text-color-secondary);
+        font-size: 0.9rem;
+        margin: 4px 0 8px 0;
+      }
+
+      .stars__container {
+        display: flex;   
+        gap: 4px;
+      }
+
+      .stars__icon.active path {
+        fill: #FFD700;
+      }
+
+      .stars__icon path {
+        fill: #333;
+      }
+
+      .review__data__desc {
+        color: var(--text-color-secondary);
+        line-height: 1.8;
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        max-width: 90%;
+      }
+
+      .review__data__images {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .review__data__images img {
+        width: 240px;
+        border-radius: 12px;
+        object-fit: cover;
+      }
+
+      .review__select {
+        flex: 1.2;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .review__select__card {
+        background-color: var(--card-bg);
+        border-radius: 16px;
+        padding: 2.5rem 2.4rem;
+        width: 450px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background-color 0.3s ease;
+      }
+
+      .review__select__card.active {
+        background-color: var(--card-bg-active);
+      }
+
+      .review__select__card__view {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .review__select__card__view__icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .review__select__card__view__icon img {
+        position: absolute;
+        width: 40px;
+        border-radius: 4px;
+      }
+
+      .review__select__card__view__data__name {
+        font-weight: 700;
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .review__select__card__view__data__about {
+        font-size: 0.8rem;
+        color: var(--text-color-secondary);
+        margin: 2px 0 6px 0;
+      }
+
+      .review__select__card__view__triangle svg {
+        width: 24px;
+        fill: #fff;
+        transform: rotate(75deg);
+        transform-origin: center;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        opacity: 0.4;
+      }
+
+      .review__select__card.active .review__select__card__view__triangle svg {
+        transform: rotate(0deg);
+        opacity: 1;
+      }
+
+      .buy-subscription__section {
+        padding-bottom: 8rem;
+      }
+
+      .buy-subscription__header {
+        margin-bottom: 3rem;
+      }
+
+      .buy-subscription__header h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .buy-subscription__header span {
+        color: var(--primary-green);
+      }
+
+      .buy-subscription__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+      }
+
+      .subscription-visual {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 450px;
+      }
+
+      .visual-media-wrapper {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end; 
+      }
+
+      .visual-media-wrapper .polygon-bg {
+        width: 100%;
+        height: auto;
+        opacity: 0.6;
+        z-index: 1;
+        position: relative; 
+        transform: none; 
+        top: auto;
+        left: auto;
+      }
+
+      .subscription-visual .icon-row {
+        margin-top: 2rem;
+        border-top: none;
+        padding-top: 0;
+        justify-content: center;
+        width: 100%;
+        padding-top: 28px;
+        border-top: 1px solid rgba(49, 52, 57, .28);
+        position: relative;
+        z-index: 5;
+      }
+
+      .subscription-character {
+        position: absolute;
+        bottom: 0; 
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%; 
+        z-index: 2;
+
+      }
+
+      .sub-icon {
+        width: 24px;
+        height: 24px;
+        opacity: 0.7;
+        transition: 0.3s;
+
+        filter: brightness(0) invert(1); 
+      }
+
+      .sub-icon:hover {
+        opacity: 1;
+        filter: none; 
+      }
+
+.subscription-card {
+  flex: 1;
+  background-color: #131620; 
+  border-radius: 20px;
+  padding: 2rem 3rem;
+  max-width: 400px;
+}
+
+.sub-card-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  color: #fff;
+}
+
+.sub-card-title span {
+  color: var(--primary-green);
+}
+
+.duration-selector {
+  background-color: #1a1f29;
+  border-radius: 50px;
+
+  padding: 8px; 
+  gap: 10px;    
+
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+.duration-btn {
+  background: transparent;
+  border: none;
+  flex: 1;
+
+  padding: 13px 0; 
+
+  border-radius: 40px;
+  color: #535863;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.duration-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  opacity: 0.6;
+  transform: rotate(75deg);
+          transform-origin: center;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.duration-btn.active {
+  background-color: var(--primary-green);
+  color: #fff;
+}
+
+.duration-btn.active svg {
+  opacity: 1;
+  transform: rotate(0deg);
+          transform-origin: center;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3.5rem 0;
+
+}
+
+      .feature-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 0; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+      .check-box {
+  width: 20px;
+  height: 20px;
+  background: #445c32;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.check-box svg {
+  width: 10px;
+  fill: rgb(145, 199, 80);
+}
+
+      .sub-card-footer {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buy-btn-large {
+  background-color: var(--primary-green);
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem 2.5rem; 
+  border-radius: 50px;
+  font-weight: 900;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+      .buy-btn-large:hover {
+  box-shadow: 0 10px 25px rgba(145, 199, 80, 0.3);
+}
+
+.buy-btn-large svg {
+  fill: #fff; 
+  width: 24px;
+  transform: rotate(150deg);
+}
+
+      .price-block {
+  text-align: right;
+}
+
+.price-top-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #636873;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+      .discount-badge {
+  background-color: #FFD700;
+  color: #12151B;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.final-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.final-price span#period-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #636873;
+  margin-left: 5px;
+}
+
+
     </style>
   </head>
   <body>
@@ -375,20 +771,15 @@
       <div class="nav-container">
         <a href="#" class="logo">
           <span class="logo-prefix">crack</span>
-          <span class="logo-text">game<span class="logo-highlight">sense</span>
-          </span>
+          <span class="logo-text">game<span class="logo-highlight">sense</span></span>
         </a>
         <nav>
           <ul>
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">Our Reviews</a>
-            </li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Our Reviews</a></li>
             <li>
               <a href="#">
-                <svg class="nav-icon-placeholder" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="nav-icon-placeholder" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M19 12.9999H17V14.6543L12 17.3627L7 14.6543V9.34556L12 6.63723L17 9.34556V10.9999H19V8.15434L12 4.36267L5 8.15434V15.8456L12 19.6372L19 15.8456V12.9999ZM12 14.9999C10.3431 14.9999 9 13.6568 9 11.9999C9 10.3431 10.3431 8.99995 12 8.99995C13.6569 8.99995 15 10.3431 15 11.9999C15 13.6568 13.6569 14.9999 12 14.9999ZM11 10.9999V12.9999H13V10.9999H11Z" fill="#91C750"></path>
                 </svg> Buy Subscription </a>
             </li>
@@ -397,6 +788,7 @@
         <a href="#" class="nav-login">Log In</a>
       </div>
     </header>
+
     <main class="hero-section">
       <div class="hero-container">
         <div class="hero-text">
@@ -404,13 +796,11 @@
             <span>PAY TO</span>
             <strong>WIN</strong>
           </div>
-          <span class="brand-subtitle">game<span class="subtitle-highlight">sense —</span>
-          </span>
-          <h1 class="legendary-title"> Legendary <br />
-            </span> cheat for <span class="highlight-csgo">cs:go</span>
+          <span class="brand-subtitle">game<span class="subtitle-highlight">sense —</span></span>
+          <h1 class="legendary-title"> Legendary <br /> cheat for <span class="highlight-csgo">cs:go</span>
             <br /> you now have the <br />option to purchase
           </h1>
-          <p class="description"> Private closed cheat for CSGO, also known as "skeet.cc", was created in 2016. For many years, this cheat was the best among other hvh projects — it was a dream to play with gamesense, and finally, dreams come true! You now have an opportunity T to purchase gamesense without any invites! </p>
+          <p class="description"> Private closed cheat for CSGO, also known as "skeet.cc", was created in 2016. For many years, this cheat was the best among other hvh projects — it was a dream to play with gamesense, and finally, dreams come true! You now have an opportunity to purchase gamesense without any invites! </p>
           <a href="#" class="cta-button">Go To Buy</a>
         </div>
         <div class="hero-image-placeholder">
@@ -420,32 +810,298 @@
           <img src="/assets/img/person1.1f9c06d.png" alt="Gamesense Hero" class="hero-image" />
           <div class="icon-row">
             <div class="icon-item">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAz1BMVEUAAAD//4D///////+/6qrI26TP36/////G46r////////////////J4KL////////I46b////////G4KPE4aLF4qC/35r////////A35q/3prA3pm93Ze93pa83ZS93Za73ZW83JS83ZO32o232oy32oy224u22ou22oq12Yq02Yn///////////////+u1n6t1n2t1X2t1Xys1Hyt1Xys1Xup03Wo03Wgz2igz2mhz2qfzmagz2f///////+azF+Rx1CRx1GUyVWVyVb///9p9g5eAAAAQHRSTlMAAggLDA4QERIUGBogISEtLi4vOjw+d3d4eXx9jpKUlpebnLm7vL2/wMLD29zd3t/g4eLj4+Ts7fj4+Pn5+fr9oWspdwAAAAFiS0dERPm0mMEAAAFUSURBVEjH7VTZUsJAEByucBkECfclRxCQOxAIxKSXzP9/kw+BAtQcL1ZZaj91bU3v7Oz0DNE//jTyQP4bBaXhzgbsnaqEC98KnCG0EJLnE2C8dIHuyACcTlB8X8AoX2qo7SH6AfcLLBJEJDWbEhFJSwjfHKUTFpHbg8gKjl8dWxwSREQUq1RiREQkmdB8EgiUXZZhzrisDuGdYojDmWWZs2dqQvUU7DByydOceVZw+Ri6R7gs22jLcYom03O2LJ6mk1GKy23YsvylwO1ui6rM/PaQs5i5Si33NFiQCyG4edKMLYtfg55EpF+KLsyYp48un3gWTaTC+PStERMDv8bVPjau4dc40rCX7q2ROmLj4yXFwfLefGs4RT+7dgRW0tXeqTVEO3CAzPplgBrHwAEi6jiAOe4BvYkJOO3goVa06xLYFEPtDUXVbcDWB8Ufs/n+8RvxDiucP9OBueVWAAAAAElFTkSuQmCC" alt="Aimbot Features">
-              <div class="icon-tooltip"> AIMBOT <br>- <br>SILENT AIM <br>- <br>AUTO-FIRE </div>
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAz1BMVEUAAAD//4D///////+/6qrI26TP36/////G46r////////////////J4KL////////I46b////////G4KPE4aLF4qC/35r////////A35q/3prA3pm93Ze93pa83ZS93Za73ZW83JS83ZO32o232oy32oy224u22ou22oq12Yq02Yn///////////////+u1n6t1n2t1X2t1Xys1Hyt1Xys1Xup03Wo03Wgz2igz2mhz2qfzmagz2f///////+azF+Rx1CRx1GUyVWVyVb///9p9g5eAAAAQHRSTlMAAggLDA4QERIUGBogISEtLi4vOjw+d3d4eXx9jpKUlpebnLm7vL2/wMLD29zd3t/g4eLj4+Ts7fj4+Pn5+fr9oWspdwAAAAFiS0dERPm0mMEAAAFUSURBVEjH7VTZUsJAEByucBkECfclRxCQOxAIxKSXzP9/kw+BAtQcL1ZZaj91bU3v7Oz0DNE//jTyQP4bBaXhzgbsnaqEC98KnCG0EJLnE2C8dIHuyACcTlB8X8AoX2qo7SH6AfcLLBJEJDWbEhFJSwjfHKUTFpHbg8gKjl8dWxwSREQUq1RiREQkmdB8EgiUXZZhzrisDuGdYojDmWWZs2dqQvUU7DByydOceVZw+Ri6R7gs22jLcYom03O2LJ6mk1GKy23YsvylwO1ui6rM/PaQs5i5Si33NFiQCyG4edKMLYtfg55EpF+KLsyYp48un3gWTaTC+PStERMDv8bVPjau4dc40rCX7q2ROmLj4yXFwfLefGs4RT+7dgRW0tXeqTVEO3CAzPplgBrHwAEi6jiAOe4BvYkJOO3goVa06xLYFEPtDUXVbcDWB8Ufs/n+8RvxDiucP9OBueVWAAAAAElFTkSuQmCC" alt="Aimbot">
+              <div class="icon-tooltip">AIMBOT <br>- <br>SILENT AIM <br>- <br>AUTO-FIRE</div>
             </div>
             <div class="icon-item">
-              <img src="/assets/img/shield.32cc986.png" alt="Anti-Aim Features">
-              <div class="icon-tooltip"> ANTI-AIM <br>- <br>PITCH <br>- <br>YAW <br>- <br>DESYNC </div>
-            </div> 
-            <div class="icon-item">
-              <img src="/assets/img/vision.33bfbca.png" alt="Visual Features">
-              <div class="icon-tooltip"> VISUALS <br>- <br>ESP <br>- <br>CHAMS <br>- <br>GLOW </div>
+              <img src="/assets/img/shield.32cc986.png" alt="Shield">
+              <div class="icon-tooltip">ANTI-AIM <br>- <br>PITCH <br>- <br>YAW</div>
             </div>
             <div class="icon-item">
-              <img src="/assets/img/knife.5f9a076.png" alt="Skin Changer Features">
-              <div class="icon-tooltip"> SKIN CHANGER <br>- <br>KNIVES <br>- <br>GLOVES <br>- <br>STICKERS Indented block </div>
+              <img src="/assets/img/vision.33bfbca.png" alt="Vision">
+              <div class="icon-tooltip">VISUALS <br>- <br>ESP <br>- <br>CHAMS</div>
             </div>
             <div class="icon-item">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAwCAMAAACPHmKLAAAA5FBMVEUAAAD///+qqlX///+fv2D///////////////////+Ww0v///////////////////+SyFKNyk////////////////////////+SyVH///////+RyFD///////////////////////////////+QyFD///+RyFD///////+RyFD///////+SxlCRx1H///+Sx0////////+RyFCRxk+Qx1H///////////////////////+SyFD///////////////////+Rx1CRx1D///////+Rx1D///////////////+Rx1D///+g5OycAAAASnRSTlMAAQMDCAgKDA4PERESFRYZHB0dICIjJy0vMDEzMzo8PURGU1RcXF1gZWZmbHBydnd3hYaHiIiRkpmcnqqst7m6u8nMzN3j6+3u9VNIrPYAAAABYktHREtpC4VQAAAAxElEQVRIx+2URw7CMBBFP733DqF3Qu8d0419//uwYJOFE8tr8pYjPelP0QA2Nn+IszMxYZQQG3NmytMtNK5s2BdzY3mhcWNBk7wHVjIzvOcNyqQLneSwPyFymaFOGlZGiN/R5CtseQ0PjjQnGPCpleEoZODToohpHmRzcBVTMkNQlRj+N6U76LSNI03idUeVfhSNCqVUV0wlme6vcwMpBLSwfLoGCHp8bL3BNcrEgHSDin2oX6L6tTtbi6WYSdz+NzZ/yRccQk6u4lBpEAAAAABJRU5ErkJggg==" alt="Resolver Features">
-              <div class="icon-tooltip"> RESOLVER <br>- <br>ANTI-AIM FIXES <br>- <br>FORCE HITBOX <br>- <br>FAKE DOWN FIX </div>
+              <img src="/assets/img/knife.5f9a076.png" alt="Knife">
+              <div class="icon-tooltip">SKINS <br>- <br>KNIFE <br>- <br>GLOVES</div>
             </div>
             <div class="icon-item">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAwCAYAAAC4wJK5AAAABmJLR0QA/wD/AP+gvaeTAAADmklEQVRoge2WX2xTdRTHP7+WtWvn2IRQcUAUEEMU4UFRAjp5MBESlGjiEmOI4UVeMJpo9MkHQ3yQF4PGRBc1C+4JmTr/YaLEaRgIaphZCMu2ODeaMWCrm7OsLW2/PvTONKPdunt/zJf7SW5u8vud8/ue055zfwd8fHx8fHx8fMpyvP/dd5p/fTZ3Zqhts9ezFtkICKBzqKUxcXX4rUzuamwu20xuqvbc6PE6KU8qN3Ef8IsXbStJ/Bxv3dJ18VhHOps04UVRgZld1ITyi8Ox9ERqJFwdqk151beSxFhy+GA6mzSblu98dfvqfQcr8fmu71DrRGrkmXAw6jmJgNcDANLZ5AqA4gQ6Rw7HTgwefrCcTx6FACLBmye96ltJohSXEv2nuy9989PZgc/qS+3/nbm8zWCIBpZ1edWy1tgAHQPvvwImOJlJPP5H4vTtIAanuk92DDR/DMoBSKodT480DY13Ndy5dNvwyqXr4l51Z+/ACmk///r5P8fPri9ei9WsnQgGqlIXJ3tuKeWzqm4jj6596duacN1Or/pW/omNDbv2rli84VQoGP09FIy0BQOhM3csiX8PT+V7r3TuyJvMZslUAZgAyVh09Y9LIrcdA67Z0LeCpFtV4M15+IxL+sKG/g1r7IXEamMX8/bJJx6WUYsMLyM1IrP1xa2fex4xSmEriYzzrp5eUCAwDLl6I46CQYZP/9uTAkCoyM8TVsrJGDMGjAKNToC8sKWtL5fPbkBmP9KTDReqmopcHgAiQI8NfWtIOuA093uSSl5wjt39knolpSWtWcgY50RStaSvnETykhIlnn+c/Yykp21pW7nspnFKaQ/QAgwCfTNMtgO9wG5jTL9NbasU3RnXTbM27wYrSIpKOiTpskpzQtLdjm1YUpPTBzPJSuqW9JjbWFyXk6SPgL1AJ3BuxvZyYBeFr98Uhc9pELgCtAP5ItsQsANYBjxkjDnlNqZ5ISki6Zqk9llsNkl6Q9JRSR9Iel7STWVsVznnfXjjor5edJ1TCq9ZPDMu6Qc3vm5v7OkyXCPpkaL134wxf1VygKR7gOIxPewyFndIWlmmmVsr9K93ymcmX7uJx9XYYYyJU7gLAJ4DmoAkUFfhETUUqqDd8T3irB9wE4+X2WnUeX9pjPkEd8Ncj+M7/XUbcxOIjSm2WVKKwq97r6QjczlQGP4AdqswP91lIY75I2lPmbp2S1xS7f+SjI+Pj4+Pj88C8C/LyXHze3TiKwAAAABJRU5ErkJggg==" alt="Config Features">
-              <div class="icon-tooltip"> LUA SCRIPTS <br>- <br>CUSTOM CONFIGS <br>- <br>AUTO-LOAD </div>
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAwCAMAAACPHmKLAAAA5FBMVEUAAAD///+qqlX///+fv2D///////////////////+Ww0v///////////////////+SyFKNyk////////////////////////+SyVH///////+RyFD///////////////////////////////+QyFD///+RyFD///////+RyFD///////+SxlCRx1H///+Sx0////////+RyFCRxk+Qx1H///////////////////////+SyFD///////////////////+Rx1CRx1D///////+Rx1D///////////////+Rx1D///+g5OycAAAASnRSTlMAAQMDCAgKDA4PERESFRYZHB0dICIjJy0vMDEzMzo8PURGU1RcXF1gZWZmbHBydnd3hYaHiIiRkpmcnqqst7m6u8nMzN3j6+3u9VNIrPYAAAABYktHREtpC4VQAAAAxElEQVRIx+2URw7CMBBFP733DqF3Qu8d0419//uwYJOFE8tr8pYjPelP0QA2Nn+IszMxYZQQG3NmytMtNK5s2BdzY3mhcWNBk7wHVjIzvOcNyqQLneSwPyFymaFOGlZGiN/R5CtseQ0PjjQnGPCpleEoZODToohpHmRzcBVTMkNQlRj+N6U76LSNI03idUeVfhSNCqVUV0wlme6vcwMpBLSwfLoGCHp8bL3BNcrEgHSDin2oX6L6tTtbi6WYSdz+NzZ/yRccQk6u4lBpEAAAAABJRU5ErkJggg==" alt="Resolver">
+              <div class="icon-tooltip">RESOLVER <br>- <br>FIXES <br>- <br>HITBOX</div>
+            </div>
+            <div class="icon-item">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAwCAYAAAC4wJK5AAAABmJLR0QA/wD/AP+gvaeTAAADmklEQVRoge2WX2xTdRTHP7+WtWvn2IRQcUAUEEMU4UFRAjp5MBESlGjiEmOI4UVeMJpo9MkHQ3yQF4PGRBc1C+4JmTr/YaLEaRgIaphZCMu2ODeaMWCrm7OsLW2/PvTONKPdunt/zJf7SW5u8vud8/ue055zfwd8fHx8fHx8fMpyvP/dd5p/fTZ3Zqhts9ezFtkICKBzqKUxcXX4rUzuamwu20xuqvbc6PE6KU8qN3Ef8IsXbStJ/Bxv3dJ18VhHOps04UVRgZld1ITyi8Ox9ERqJFwdqk151beSxFhy+GA6mzSblu98dfvqfQcr8fmu71DrRGrkmXAw6jmJgNcDANLZ5AqA4gQ6Rw7HTgwefrCcTx6FACLBmye96ltJohSXEv2nuy9989PZgc/qS+3/nbm8zWCIBpZ1edWy1tgAHQPvvwImOJlJPP5H4vTtIAanuk92DDR/DMoBSKodT480DY13Ndy5dNvwyqXr4l51Z+/ACmk///r5P8fPri9ei9WsnQgGqlIXJ3tuKeWzqm4jj6596duacN1Or/pW/omNDbv2rli84VQoGP09FIy0BQOhM3csiX8PT+V7r3TuyJvMZslUAZgAyVh09Y9LIrcdA67Z0LeCpFtV4M15+IxL+sKG/g1r7IXEamMX8/bJJx6WUYsMLyM1IrP1xa2fex4xSmEriYzzrp5eUCAwDLl6I46CQYZP/9uTAkCoyM8TVsrJGDMGjAKNToC8sKWtL5fPbkBmP9KTDReqmopcHgAiQI8NfWtIOuA093uSSl5wjt39knolpSWtWcgY50RStaSvnETykhIlnn+c/Yykp21pW7nspnFKaQ/QAgwCfTNMtgO9wG5jTL9NbasU3RnXTbM27wYrSIpKOiTpskpzQtLdjm1YUpPTBzPJSuqW9JjbWFyXk6SPgL1AJ3BuxvZyYBeFr98Uhc9pELgCtAP5ItsQsANYBjxkjDnlNqZ5ISki6Zqk9llsNkl6Q9JRSR9Iel7STWVsVznnfXjjor5edJ1TCq9ZPDMu6Qc3vm5v7OkyXCPpkaL134wxf1VygKR7gOIxPewyFndIWlmmmVsr9K93ymcmX7uJx9XYYYyJU7gLAJ4DmoAkUFfhETUUqqDd8T3irB9wE4+X2WnUeX9pjPkEd8Ncj+M7/XUbcxOIjSm2WVKKwq97r6QjczlQGP4AdqswP91lIY75I2lPmbp2S1xS7f+SjI+Pj4+Pj88C8C/LyXHze3TiKwAAAABJRU5ErkJggg==" alt="Configs">
+              <div class="icon-tooltip">LUA SCRIPTS <br>- <br>CONFIGS <br>- <br>AUTO-LOAD</div>
             </div>
           </div>
         </div>
       </div>
     </main>
+
+    <section class="review__container">
+      <div class="review__header">
+        <p>Our <span>reviews</span></p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="review__body">
+        <div class="review__data">
+          <div class="review__data__info">
+            <div style="position: relative; width: 80px; height: 85px;">
+              <svg width="80" height="85" viewBox="0 0 64 93" fill="none"><path d="M32 15H52C58.6 15 64 20.3 64 27V66.8C64 70.9 61.8 74.8 58.2 77L38.2 89.2C34.4 91.5 29.6 91.5 25.8 89.2L5.8 77C2.2 74.8 0 70.9 0 66.8V27C0 20.4 5.4 15 12 15H32Z" fill="#91C750"></path></svg>
+              <img id="main-review-avatar" src="/assets/img/art1.e451381.png" alt="Reviewer" style="position: absolute; width: 50px; bottom: 5px; left: 7px; z-index: 2;">
+            </div>
+            <div class="review__data__info__data">
+              <p id="main-review-name" class="review__data__info__data__name">Phoenix Thug</p>
+              <p id="main-review-about" class="review__data__info__data__about">Commentator, streamer</p>
+              <div class="stars__container" id="main-stars">
+                <svg width="16" height="16" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg width="16" height="16" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg width="16" height="16" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg width="16" height="16" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg width="16" height="16" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+            </div>
+          </div>
+          <p id="main-review-desc" class="review__data__desc">One of the best cheats on hvh, everyone knows gamesense and reputation of this hack. Without a doubt - skeet will be always on top. If you are looking for new experience on hvh - (then) it's time to try it out! Best ragebot, smooth legitbot and lua system makes this cheat adorable.</p>
+          <div class="inner-divider"></div>
+          <div class="review__data__images">
+            <img src="https://i.ytimg.com/vi/oSSp7BexYw4/maxresdefault.jpg" alt="1">
+            <img src="https://i.ytimg.com/vi/oSSp7BexYw4/maxresdefault.jpg" alt="2">
+          </div>
+        </div>
+
+        <div class="review__select">
+          <div class="review__select__card active" onclick="updateReview(0)">
+            <div class="review__select__card__view">
+              <div class="review__select__card__view__icon">
+                <svg width="40" height="48" viewBox="0 0 48 57"><path d="M24 0.5H36C42.6 0.5 48 5.9 48 12.5V37.2C48 41.4 45.8 45.3 42.2 47.5L30.2 54.8C26.4 57.1 21.6 57.1 17.8 54.8L5.8 47.5C2.2 45.3 0 41.4 0 37.2V12.5C0 5.9 5.4 0.5 12 0.5H24Z" fill="#91C750"></path></svg>
+                <img src="/assets/img/art1.e451381.png" alt="">
+              </div>
+              <div class="review__select__card__view__data">
+                <p class="review__select__card__view__data__name">Phoenix Thug</p>
+                <p class="review__select__card__view__data__about">Commentator, streamer</p>
+                <div class="stars__container">
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="review__select__card__view__triangle">
+              <svg viewBox="0 0 28 28" fill="none"><path d="M12.6785 8.91673L17.6009 16.9062C17.7105 17.0851 17.7 17.3142 17.5705 17.4818C16.986 18.2408 16.3933 18.9189 15.8951 19.3714C15.8951 19.3714 15.4961 19.7612 15.2429 19.9299C14.8976 20.2023 14.446 20.3333 14.0074 20.3333C13.515 20.3333 13.0495 20.1897 12.6773 19.9037C12.6108 19.8387 12.3179 19.5914 12.0788 19.3577C10.59 17.9946 8.13056 14.4364 7.38502 12.565C7.26485 12.2926 7.014 11.5654 7 11.1882C7 10.8246 7.07934 10.4736 7.25318 10.1362C7.49236 9.72137 7.86338 9.39655 8.30323 9.2142C8.60891 9.09681 9.52596 8.91559 9.55279 8.91559C10.2073 8.7982 11.1267 8.71044 12.2001 8.66713C12.3926 8.65915 12.5793 8.75603 12.6785 8.91673Z"></path> <path opacity="0.4" d="M15.3297 9.45103C15.1116 9.09886 15.3904 8.6555 15.8093 8.6726C16.7916 8.71477 17.6574 8.78771 18.3014 8.87661C18.3154 8.89029 19.4576 9.0715 19.8438 9.28007C20.5613 9.64364 21 10.3571 21 11.1241V11.188C20.9872 11.6826 20.5485 12.7346 20.5217 12.7346C20.3012 13.2645 19.9278 13.9564 19.4786 14.7006C19.2756 15.0357 18.7774 15.0437 18.5709 14.7086L15.3297 9.45103Z"></path></svg>
+            </div>
+          </div>
+
+          <div class="review__select__card" onclick="updateReview(1)">
+            <div class="review__select__card__view">
+              <div class="review__select__card__view__icon">
+                <svg width="40" height="48" viewBox="0 0 48 57"><path d="M24 0.5H36C42.6 0.5 48 5.9 48 12.5V37.2C48 41.4 45.8 45.3 42.2 47.5L30.2 54.8C26.4 57.1 21.6 57.1 17.8 54.8L5.8 47.5C2.2 45.3 0 41.4 0 37.2V12.5C0 5.9 5.4 0.5 12 0.5H24Z" fill="#91C750"></path></svg>
+                <img src="/assets/img/art3.e781a53.png" alt="">
+              </div>
+              <div class="review__select__card__view__data">
+                <p class="review__select__card__view__data__name">Pepega</p>
+                <p class="review__select__card__view__data__about">Brown Rooster</p>
+                <div class="stars__container">
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="review__select__card__view__triangle">
+              <svg viewBox="0 0 28 28" fill="none"><path d="M12.6785 8.91673L17.6009 16.9062C17.7105 17.0851 17.7 17.3142 17.5705 17.4818C16.986 18.2408 16.3933 18.9189 15.8951 19.3714C15.8951 19.3714 15.4961 19.7612 15.2429 19.9299C14.8976 20.2023 14.446 20.3333 14.0074 20.3333C13.515 20.3333 13.0495 20.1897 12.6773 19.9037C12.6108 19.8387 12.3179 19.5914 12.0788 19.3577C10.59 17.9946 8.13056 14.4364 7.38502 12.565C7.26485 12.2926 7.014 11.5654 7 11.1882C7 10.8246 7.07934 10.4736 7.25318 10.1362C7.49236 9.72137 7.86338 9.39655 8.30323 9.2142C8.60891 9.09681 9.52596 8.91559 9.55279 8.91559C10.2073 8.7982 11.1267 8.71044 12.2001 8.66713C12.3926 8.65915 12.5793 8.75603 12.6785 8.91673Z"></path> <path opacity="0.4" d="M15.3297 9.45103C15.1116 9.09886 15.3904 8.6555 15.8093 8.6726C16.7916 8.71477 17.6574 8.78771 18.3014 8.87661C18.3154 8.89029 19.4576 9.0715 19.8438 9.28007C20.5613 9.64364 21 10.3571 21 11.1241V11.188C20.9872 11.6826 20.5485 12.7346 20.5217 12.7346C20.3012 13.2645 19.9278 13.9564 19.4786 14.7006C19.2756 15.0357 18.7774 15.0437 18.5709 14.7086L15.3297 9.45103Z"></path></svg>
+            </div>
+          </div>
+
+          <div class="review__select__card" onclick="updateReview(2)">
+            <div class="review__select__card__view">
+              <div class="review__select__card__view__icon">
+                <svg width="40" height="48" viewBox="0 0 48 57"><path d="M24 0.5H36C42.6 0.5 48 5.9 48 12.5V37.2C48 41.4 45.8 45.3 42.2 47.5L30.2 54.8C26.4 57.1 21.6 57.1 17.8 54.8L5.8 47.5C2.2 45.3 0 41.4 0 37.2V12.5C0 5.9 5.4 0.5 12 0.5H24Z" fill="#91C750"></path></svg>
+                <img src="/assets/img/art2.219ed21.png" alt="">
+              </div>
+              <div class="review__select__card__view__data">
+                <p class="review__select__card__view__data__name">Esoterik</p>
+                <p class="review__select__card__view__data__about">Original Skeet Paster</p>
+                <div class="stars__container">
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg width="12" height="12" class="stars__icon active" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="review__select__card__view__triangle">
+              <svg viewBox="0 0 28 28" fill="none"><path d="M12.6785 8.91673L17.6009 16.9062C17.7105 17.0851 17.7 17.3142 17.5705 17.4818C16.986 18.2408 16.3933 18.9189 15.8951 19.3714C15.8951 19.3714 15.4961 19.7612 15.2429 19.9299C14.8976 20.2023 14.446 20.3333 14.0074 20.3333C13.515 20.3333 13.0495 20.1897 12.6773 19.9037C12.6108 19.8387 12.3179 19.5914 12.0788 19.3577C10.59 17.9946 8.13056 14.4364 7.38502 12.565C7.26485 12.2926 7.014 11.5654 7 11.1882C7 10.8246 7.07934 10.4736 7.25318 10.1362C7.49236 9.72137 7.86338 9.39655 8.30323 9.2142C8.60891 9.09681 9.52596 8.91559 9.55279 8.91559C10.2073 8.7982 11.1267 8.71044 12.2001 8.66713C12.3926 8.65915 12.5793 8.75603 12.6785 8.91673Z"></path> <path opacity="0.4" d="M15.3297 9.45103C15.1116 9.09886 15.3904 8.6555 15.8093 8.6726C16.7916 8.71477 17.6574 8.78771 18.3014 8.87661C18.3154 8.89029 19.4576 9.0715 19.8438 9.28007C20.5613 9.64364 21 10.3571 21 11.1241V11.188C20.9872 11.6826 20.5485 12.7346 20.5217 12.7346C20.3012 13.2645 19.9278 13.9564 19.4786 14.7006C19.2756 15.0357 18.7774 15.0437 18.5709 14.7086L15.3297 9.45103Z"></path></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="buy-subscription__section">
+      <div class="buy-subscription__header">
+        <h2 class="buy-subscription__title">Buy <span>Subscription</span></h2>
+        <div class="section-divider"></div>
+      </div>
+      
+      <div class="buy-subscription__wrapper">
+        <div class="subscription-visual">
+          <div class="visual-media-wrapper"> <svg viewBox="0 0 460 514" class="polygon-bg" xmlns="http://www.w3.org/2000/svg">
+              <path d="M444 0C457.255 0 468 10.7452 468 24V393.425C468 402.812 462.528 411.337 453.993 415.246L243.993 511.423C237.648 514.329 230.352 514.329 224.007 511.423L14.0065 415.246C5.47229 411.337 0 402.812 0 393.425V24C0 10.7452 10.7452 0 24 0L444 0Z" fill="#191D28" />
+            </svg>
+            <img src="/assets/img/person2.4d04553.png" class="subscription-character">
+          </div>
+          
+          <div class="icon-row"> <div class="icon-item">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAz1BMVEUAAAD//4D///////+/6qrI26TP36/////G46r////////////////J4KL////////I46b////////G4KPE4aLF4qC/35r////////A35q/3prA3pm93Ze93pa83ZS93Za73ZW83JS83ZO32o232oy32oy224u22ou22oq12Yq02Yn///////////////+u1n6t1n2t1X2t1Xys1Hyt1Xys1Xup03Wo03Wgz2igz2mhz2qfzmagz2f///////+azF+Rx1CRx1GUyVWVyVb///9p9g5eAAAAQHRSTlMAAggLDA4QERIUGBogISEtLi4vOjw+d3d4eXx9jpKUlpebnLm7vL2/wMLD29zd3t/g4eLj4+Ts7fj4+Pn5+fr9oWspdwAAAAFiS0dERPm0mMEAAAFUSURBVEjH7VTZUsJAEByucBkECfclRxCQOxAIxKSXzP9/kw+BAtQcL1ZZaj91bU3v7Oz0DNE//jTyQP4bBaXhzgbsnaqEC98KnCG0EJLnE2C8dIHuyACcTlB8X8AoX2qo7SH6AfcLLBJEJDWbEhFJSwjfHKUTFpHbg8gKjl8dWxwSREQUq1RiREQkmdB8EgiUXZZhzrisDuGdYojDmWWZs2dqQvUU7DByydOceVZw+Ri6R7gs22jLcYom03O2LJ6mk1GKy23YsvylwO1ui6rM/PaQs5i5Si33NFiQCyG4edKMLYtfg55EpF+KLsyYp48un3gWTaTC+PStERMDv8bVPjau4dc40rCX7q2ROmLj4yXFwfLefGs4RT+7dgRW0tXeqTVEO3CAzPplgBrHwAEi6jiAOe4BvYkJOO3goVa06xLYFEPtDUXVbcDWB8Ufs/n+8RvxDiucP9OBueVWAAAAAElFTkSuQmCC" alt="Aimbot">
+              <div class="icon-tooltip">AIMBOT <br>- <br>SILENT AIM <br>- <br>AUTO-FIRE</div>
+            </div>
+            <div class="icon-item">
+              <img src="/assets/img/shield.32cc986.png" alt="Shield">
+              <div class="icon-tooltip">ANTI-AIM <br>- <br>PITCH <br>- <br>YAW</div>
+            </div>
+            <div class="icon-item">
+              <img src="/assets/img/vision.33bfbca.png" alt="Vision">
+              <div class="icon-tooltip">VISUALS <br>- <br>ESP <br>- <br>CHAMS</div>
+            </div>
+            <div class="icon-item">
+              <img src="/assets/img/knife.5f9a076.png" alt="Knife">
+              <div class="icon-tooltip">SKINS <br>- <br>KNIFE <br>- <br>GLOVES</div>
+            </div>
+            <div class="icon-item">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAwCAMAAACPHmKLAAAA5FBMVEUAAAD///+qqlX///+fv2D///////////////////+Ww0v///////////////////+SyFKNyk////////////////////////+SyVH///////+RyFD///////////////////////////////+QyFD///+RyFD///////+RyFD///////+SxlCRx1H///+Sx0////////+RyFCRxk+Qx1H///////////////////////+SyFD///////////////////+Rx1CRx1D///////+Rx1D///////////////+Rx1D///+g5OycAAAASnRSTlMAAQMDCAgKDA4PERESFRYZHB0dICIjJy0vMDEzMzo8PURGU1RcXF1gZWZmbHBydnd3hYaHiIiRkpmcnqqst7m6u8nMzN3j6+3u9VNIrPYAAAABYktHREtpC4VQAAAAxElEQVRIx+2URw7CMBBFP733DqF3Qu8d0419//uwYJOFE8tr8pYjPelP0QA2Nn+IszMxYZQQG3NmytMtNK5s2BdzY3mhcWNBk7wHVjIzvOcNyqQLneSwPyFymaFOGlZGiN/R5CtseQ0PjjQnGPCpleEoZODToohpHmRzcBVTMkNQlRj+N6U76LSNI03idUeVfhSNCqVUV0wlme6vcwMpBLSwfLoGCHp8bL3BNcrEgHSDin2oX6L6tTtbi6WYSdz+NzZ/yRccQk6u4lBpEAAAAABJRU5ErkJggg==" alt="Resolver">
+              <div class="icon-tooltip">RESOLVER <br>- <br>FIXES <br>- <br>HITBOX</div>
+            </div>
+            <div class="icon-item">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAwCAYAAAC4wJK5AAAABmJLR0QA/wD/AP+gvaeTAAADmklEQVRoge2WX2xTdRTHP7+WtWvn2IRQcUAUEEMU4UFRAjp5MBESlGjiEmOI4UVeMJpo9MkHQ3yQF4PGRBc1C+4JmTr/YaLEaRgIaphZCMu2ODeaMWCrm7OsLW2/PvTONKPdunt/zJf7SW5u8vud8/ue055zfwd8fHx8fHx8fMpyvP/dd5p/fTZ3Zqhts9ezFtkICKBzqKUxcXX4rUzuamwu20xuqvbc6PE6KU8qN3Ef8IsXbStJ/Bxv3dJ18VhHOps04UVRgZld1ITyi8Ox9ERqJFwdqk151beSxFhy+GA6mzSblu98dfvqfQcr8fmu71DrRGrkmXAw6jmJgNcDANLZ5AqA4gQ6Rw7HTgwefrCcTx6FACLBmye96ltJohSXEv2nuy9989PZgc/qS+3/nbm8zWCIBpZ1edWy1tgAHQPvvwImOJlJPP5H4vTtIAanuk92DDR/DMoBSKodT480DY13Ndy5dNvwyqXr4l51Z+/ACmk///r5P8fPri9ei9WsnQgGqlIXJ3tuKeWzqm4jj6596duacN1Or/pW/omNDbv2rli84VQoGP09FIy0BQOhM3csiX8PT+V7r3TuyJvMZslUAZgAyVh09Y9LIrcdA67Z0LeCpFtV4M15+IxL+sKG/g1r7IXEamMX8/bJJx6WUYsMLyM1IrP1xa2fex4xSmEriYzzrp5eUCAwDLl6I46CQYZP/9uTAkCoyM8TVsrJGDMGjAKNToC8sKWtL5fPbkBmP9KTDReqmopcHgAiQI8NfWtIOuA093uSSl5wjt39knolpSWtWcgY50RStaSvnETykhIlnn+c/Yykp21pW7nspnFKaQ/QAgwCfTNMtgO9wG5jTL9NbasU3RnXTbM27wYrSIpKOiTpskpzQtLdjm1YUpPTBzPJSuqW9JjbWFyXk6SPgL1AJ3BuxvZyYBeFr98Uhc9pELgCtAP5ItsQsANYBjxkjDnlNqZ5ISki6Zqk9llsNkl6Q9JRSR9Iel7STWVsVznnfXjjor5edJ1TCq9ZPDMu6Qc3vm5v7OkyXCPpkaL134wxf1VygKR7gOIxPewyFndIWlmmmVsr9K93ymcmX7uJx9XYYYyJU7gLAJ4DmoAkUFfhETUUqqDd8T3irB9wE4+X2WnUeX9pjPkEd8Ncj+M7/XUbcxOIjSm2WVKKwq97r6QjczlQGP4AdqswP91lIY75I2lPmbp2S1xS7f+SjI+Pj4+Pj88C8C/LyXHze3TiKwAAAABJRU5ErkJggg==" alt="Configs">
+              <div class="icon-tooltip">LUA SCRIPTS <br>- <br>CONFIGS <br>- <br>AUTO-LOAD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subscription-card">
+          <h3 class="sub-card-title">Subscription to <span id="display-days">30 days</span></h3>
+          
+          <div class="duration-selector">
+            <button class="duration-btn active" onclick="setPlan(30, 35, 520)">
+              <svg viewBox="0 0 28 28" fill="none"><path d="M12.6785 8.91673L17.6009 16.9062C17.7105 17.0851 17.7 17.3142 17.5705 17.4818C16.986 18.2408 16.3933 18.9189 15.8951 19.3714C15.8951 19.3714 15.4961 19.7612 15.2429 19.9299C14.8976 20.2023 14.446 20.3333 14.0074 20.3333C13.515 20.3333 13.0495 20.1897 12.6773 19.9037C12.6108 19.8387 12.3179 19.5914 12.0788 19.3577C10.59 17.9946 8.13056 14.4364 7.38502 12.565C7.26485 12.2926 7.014 11.5654 7 11.1882C7 10.8246 7.07934 10.4736 7.25318 10.1362C7.49236 9.72137 7.86338 9.39655 8.30323 9.2142C8.60891 9.09681 9.52596 8.91559 9.55279 8.91559C10.2073 8.7982 11.1267 8.71044 12.2001 8.66713C12.3926 8.65915 12.5793 8.75603 12.6785 8.91673Z"></path> <path opacity="0.4" d="M15.3297 9.45103C15.1116 9.09886 15.3904 8.6555 15.8093 8.6726C16.7916 8.71477 17.6574 8.78771 18.3014 8.87661C18.3154 8.89029 19.4576 9.0715 19.8438 9.28007C20.5613 9.64364 21 10.3571 21 11.1241V11.188C20.9872 11.6826 20.5485 12.7346 20.5217 12.7346C20.3012 13.2645 19.9278 13.9564 19.4786 14.7006C19.2756 15.0357 18.7774 15.0437 18.5709 14.7086L15.3297 9.45103Z"></path></svg>
+              30 Days
+            </button>
+            <button class="duration-btn" onclick="setPlan(60, 65)">
+<svg viewBox="0 0 28 28" fill="none"><path d="M12.6785 8.91673L17.6009 16.9062C17.7105 17.0851 17.7 17.3142 17.5705 17.4818C16.986 18.2408 16.3933 18.9189 15.8951 19.3714C15.8951 19.3714 15.4961 19.7612 15.2429 19.9299C14.8976 20.2023 14.446 20.3333 14.0074 20.3333C13.515 20.3333 13.0495 20.1897 12.6773 19.9037C12.6108 19.8387 12.3179 19.5914 12.0788 19.3577C10.59 17.9946 8.13056 14.4364 7.38502 12.565C7.26485 12.2926 7.014 11.5654 7 11.1882C7 10.8246 7.07934 10.4736 7.25318 10.1362C7.49236 9.72137 7.86338 9.39655 8.30323 9.2142C8.60891 9.09681 9.52596 8.91559 9.55279 8.91559C10.2073 8.7982 11.1267 8.71044 12.2001 8.66713C12.3926 8.65915 12.5793 8.75603 12.6785 8.91673Z"></path> <path opacity="0.4" d="M15.3297 9.45103C15.1116 9.09886 15.3904 8.6555 15.8093 8.6726C16.7916 8.71477 17.6574 8.78771 18.3014 8.87661C18.3154 8.89029 19.4576 9.0715 19.8438 9.28007C20.5613 9.64364 21 10.3571 21 11.1241V11.188C20.9872 11.6826 20.5485 12.7346 20.5217 12.7346C20.3012 13.2645 19.9278 13.9564 19.4786 14.7006C19.2756 15.0357 18.7774 15.0437 18.5709 14.7086L15.3297 9.45103Z"></path></svg>
+              60 Days
+            </button>
+            <button class="duration-btn" onclick="setPlan(90, 90)">
+<svg viewBox="0 0 28 28" fill="none"><path d="M12.6785 8.91673L17.6009 16.9062C17.7105 17.0851 17.7 17.3142 17.5705 17.4818C16.986 18.2408 16.3933 18.9189 15.8951 19.3714C15.8951 19.3714 15.4961 19.7612 15.2429 19.9299C14.8976 20.2023 14.446 20.3333 14.0074 20.3333C13.515 20.3333 13.0495 20.1897 12.6773 19.9037C12.6108 19.8387 12.3179 19.5914 12.0788 19.3577C10.59 17.9946 8.13056 14.4364 7.38502 12.565C7.26485 12.2926 7.014 11.5654 7 11.1882C7 10.8246 7.07934 10.4736 7.25318 10.1362C7.49236 9.72137 7.86338 9.39655 8.30323 9.2142C8.60891 9.09681 9.52596 8.91559 9.55279 8.91559C10.2073 8.7982 11.1267 8.71044 12.2001 8.66713C12.3926 8.65915 12.5793 8.75603 12.6785 8.91673Z"></path> <path opacity="0.4" d="M15.3297 9.45103C15.1116 9.09886 15.3904 8.6555 15.8093 8.6726C16.7916 8.71477 17.6574 8.78771 18.3014 8.87661C18.3154 8.89029 19.4576 9.0715 19.8438 9.28007C20.5613 9.64364 21 10.3571 21 11.1241V11.188C20.9872 11.6826 20.5485 12.7346 20.5217 12.7346C20.3012 13.2645 19.9278 13.9564 19.4786 14.7006C19.2756 15.0357 18.7774 15.0437 18.5709 14.7086L15.3297 9.45103Z"></path></svg>
+              90 Days
+            </button>
+          </div>
+
+          <ul class="features-list">
+            <li class="feature-item">
+              Access to all functionality
+              <div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+            </li>
+            <li class="feature-item">
+              Quick support assistance
+              <div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+            </li>
+            <li class="feature-item">
+              Obtaining an undeniable advantage
+              <div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+            </li>
+            <li class="feature-item">
+              Golden Cheat
+              <div class="check-box"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+            </li>
+          </ul>
+
+          <div class="sub-card-footer">
+            <a href="#" class="buy-btn-large">
+              Go To Buy
+             <svg viewBox="0 0 28 28" fill="none"><path d="M12.6785 8.91673L17.6009 16.9062C17.7105 17.0851 17.7 17.3142 17.5705 17.4818C16.986 18.2408 16.3933 18.9189 15.8951 19.3714C15.8951 19.3714 15.4961 19.7612 15.2429 19.9299C14.8976 20.2023 14.446 20.3333 14.0074 20.3333C13.515 20.3333 13.0495 20.1897 12.6773 19.9037C12.6108 19.8387 12.3179 19.5914 12.0788 19.3577C10.59 17.9946 8.13056 14.4364 7.38502 12.565C7.26485 12.2926 7.014 11.5654 7 11.1882C7 10.8246 7.07934 10.4736 7.25318 10.1362C7.49236 9.72137 7.86338 9.39655 8.30323 9.2142C8.60891 9.09681 9.52596 8.91559 9.55279 8.91559C10.2073 8.7982 11.1267 8.71044 12.2001 8.66713C12.3926 8.65915 12.5793 8.75603 12.6785 8.91673Z"></path> <path opacity="0.4" d="M15.3297 9.45103C15.1116 9.09886 15.3904 8.6555 15.8093 8.6726C16.7916 8.71477 17.6574 8.78771 18.3014 8.87661C18.3154 8.89029 19.4576 9.0715 19.8438 9.28007C20.5613 9.64364 21 10.3571 21 11.1241V11.188C20.9872 11.6826 20.5485 12.7346 20.5217 12.7346C20.3012 13.2645 19.9278 13.9564 19.4786 14.7006C19.2756 15.0357 18.7774 15.0437 18.5709 14.7086L15.3297 9.45103Z"></path></svg>
+            </a>
+            
+            <div class="price-block">
+              <div class="price-top-row">
+                <span class="old-price" id="old-price">$520</span>
+                <span class="discount-badge" id="discount-amount">$-485</span>
+              </div>
+              <div class="final-price">$<span id="current-price" style="color: #fff; font-weight: 900; font-size: 28px;">35</span> <span id="period-text">/ <span id="price-days">30</span> days</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <script>
+      const reviews = [
+        {
+          name: "Phoenix Thug",
+          about: "Commentator, streamer",
+          avatar: "/assets/img/art1.e451381.png",
+          rating: 5,
+          desc: "One of the best cheats on hvh, everyone knows gamesense and reputation of this hack. Without a doubt - skeet will be always on top. If you are looking for new experience on hvh - (then) it's time to try it out! Best ragebot, smooth legitbot and lua system makes this cheat adorable."
+        },
+        {
+          name: "Pepega",
+          about: "Brown Rooster",
+          avatar: "/assets/img/art3.e781a53.png",
+          rating: 4,
+          desc: "Best community support I have ever seen! No matter what problem do you have, technical support will fix it in shortest time periods. The staff is very friendly and respond quickly."
+        },
+        {
+          name: "Esoterik",
+          about: "Original Skeet Paster",
+          avatar: "/assets/img/art2.219ed21.png",
+          rating: 5,
+          desc: "Gamesense is primarily designed as a rage focused cheat, so I was not left disappointed when I discovered this is where the software really shines in comparison to all of its other features. With this hack you can perform everywhere. I love playing with it, finally I found my main cheat. One of the best antiaims, perfect doubletap and great visuals section makes this hack best on all layers."
+        }
+      ];
+
+      function updateReview(index) {
+        document.getElementById('main-review-name').innerText = reviews[index].name;
+        document.getElementById('main-review-about').innerText = reviews[index].about;
+        document.getElementById('main-review-desc').innerText = reviews[index].desc;
+        document.getElementById('main-review-avatar').src = reviews[index].avatar;
+
+        const stars = document.querySelectorAll('#main-stars .stars__icon');
+        stars.forEach((star, i) => {
+          if (i < reviews[index].rating) {
+            star.classList.add('active');
+          } else {
+            star.classList.remove('active');
+          }
+        });
+
+        const cards = document.querySelectorAll('.review__select__card');
+        cards.forEach((card, i) => {
+          if(i === index) card.classList.add('active');
+          else card.classList.remove('active');
+        });
+      }
+
+      function setPlan(days, currentPrice, oldPrice) {
+        document.getElementById('display-days').innerText = days + " days";
+        document.getElementById('price-days').innerText = days;
+        document.getElementById('current-price').innerText = currentPrice;
+        document.getElementById('old-price').innerText = "$" + oldPrice;
+        document.getElementById('discount-amount').innerText = "$-" + (oldPrice - currentPrice);
+
+        const buttons = document.querySelectorAll('.duration-btn');
+        buttons.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.innerText.includes(days)) {
+            btn.classList.add('active');
+          }
+        });
+      }
+    </script>
   </body>
 </html>
